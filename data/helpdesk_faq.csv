@@ -1,0 +1,31 @@
+id,question,answer,department
+1,How do I get my bonafide certificate?,Apply on the student portal and collect from admin office in 2 working days.,admin
+2,How can I reset campus WiFi password?,Use the IT self-service reset page and verify with institute email.,it
+3,How to apply for hostel room change?,Submit room change request form with warden approval.,hostel
+4,What is the library late fee policy?,Late fee is charged per day after due date depending on item type.,library
+5,How do I register for electives?,Use ERP elective registration window and lock choices before deadline.,academics
+6,How to request transcript copies?,Raise transcript request and pay processing fee through accounts section.,admin
+7,How to report classroom projector issue?,Create a ticket in IT helpdesk with room number and issue details.,it
+8,How do I get internship NOC?,Submit offer letter and request NOC from training and placement cell.,placements
+9,How to book sports complex court?,Reserve slots in sports portal under facility booking section.,sports
+10,How to apply for scholarship renewal?,Upload grade sheet and income proof before scholarship deadline.,finance
+11,How do I activate institute email?,First login via onboarding portal and set recovery options.,it
+12,How to get duplicate ID card?,Report loss and submit duplicate ID request with payment receipt.,admin
+13,How to issue new library book?,Search catalog then issue at library counter with student ID.,library
+14,How can I drop a registered course?,Submit add-drop request during official add-drop period.,academics
+15,How to raise grievance against marks?,File re-evaluation request through exam cell portal.,academics
+16,How to request hostel maintenance?,Log maintenance request in hostel service app.,hostel
+17,How to get fee payment receipt?,Download receipt from finance ERP after successful transaction.,finance
+18,How to update contact number in ERP?,Edit profile information in ERP personal details section.,admin
+19,How to book placement interview slot?,Use placement portal and select available company slot.,placements
+20,How to extend library borrowing period?,Request renewal from your account if no pending reservations.,library
+21,How to get exam timetable?,Check academics notice board or ERP timetable section.,academics
+22,How to contact anti-ragging committee?,Use student welfare emergency contacts listed on campus portal.,welfare
+23,How to get medical reimbursement form?,Download form from health center page and submit bills.,health
+24,How to request temporary internet access?,Send IT ticket with device details and access duration.,it
+25,How to apply for semester leave?,Submit leave application with academic advisor approval.,academics
+26,How to check mess rebate status?,View mess management dashboard under rebate requests.,hostel
+27,How to reserve seminar hall?,Submit event request to admin office with time and purpose.,admin
+28,How to update bank account for stipend?,Submit bank proof and update details in finance records.,finance
+29,How to access previous year question papers?,Use digital library repository and filter by course code.,library
+30,How to report campus safety concern?,Contact campus security desk or welfare emergency helpline.,welfare

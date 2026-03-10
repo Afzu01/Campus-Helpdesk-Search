@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Campus Helpdesk Search</title>
+<style>
+:root{--bg:#070b16;--ink:#eef6ff;--muted:#b4c5dd;--panel:rgba(255,255,255,.08);--line:rgba(255,255,255,.2);--brand:#54d9ff;--brand2:#65f0c4}
+*{box-sizing:border-box}body{margin:0;font-family:Segoe UI,Tahoma,sans-serif;color:var(--ink);background:radial-gradient(circle at 20% 20%,#1a2f68 0%,transparent 35%),radial-gradient(circle at 80% 80%,#184640 0%,transparent 40%),var(--bg)}
+.wrap{max-width:1100px;margin:28px auto;padding:0 16px}.hero,.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;backdrop-filter:blur(8px);box-shadow:0 18px 42px rgba(0,0,0,.45)}.hero{padding:20px}.hero h1{margin:0}.hero p{color:#d9ebff}
+.grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:14px;margin-top:14px}@media(max-width:900px){.grid{grid-template-columns:1fr}}
+.card{padding:14px}label{display:block;margin:8px 0 4px;color:var(--muted);font-size:12px}input{width:100%;padding:9px;border:1px solid var(--line);border-radius:10px;background:#f7fbff}
+button{margin-top:10px;border:0;border-radius:10px;padding:10px 12px;font-weight:700;background:linear-gradient(120deg,var(--brand),var(--brand2));color:#05213a;cursor:pointer}
+pre{white-space:pre-wrap;background:#08152d;color:#d4fff1;padding:10px;border-radius:10px;border:1px solid var(--line);min-height:110px}
+.results{margin-top:10px;display:grid;gap:9px}.r{border:1px solid var(--line);border-radius:10px;padding:10px;background:rgba(255,255,255,.06)}.dept{display:inline-block;margin-top:6px;padding:3px 8px;border-radius:999px;border:1px solid rgba(84,217,255,.5);background:rgba(84,217,255,.14);font-size:11px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.s{border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.06);padding:10px;text-align:center}.s b{font-size:22px}
+</style></head>
+<body><div class="wrap"><div class="hero"><h1>Campus Helpdesk Search</h1><p>Find official campus process answers quickly with semantic ranking and confidence filtering.</p></div>
+<div class="grid"><div class="card"><h3 style="margin:0">Semantic Query</h3><label>Query</label><input id="q" value="how to get transcript" /><label>Top K</label><input id="k" type="number" min="1" max="20" value="5" /><label>Minimum Score</label><input id="m" type="number" step="0.01" min="0" max="1" value="0.1" />
+<button id="searchBtn">Run /search</button><button id="embedBtn" style="background:linear-gradient(120deg,#ffb25e,#6fd5ff)">Run /embed</button><pre id="out"></pre></div>
+<div class="card"><div class="stats"><div class="s"><div>Results</div><b id="cnt">0</b></div><div class="s"><div>Top Score</div><b id="top">0</b></div><div class="s"><div>Top Dept</div><b id="dep">-</b></div></div><div id="results" class="results"></div></div></div></div>
+<script>
+async function runSearch(){const query=document.getElementById('q').value;const top_k=Number(document.getElementById('k').value||5);const min_score=Number(document.getElementById('m').value||0.1);const data=await fetch('/search',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({query,top_k,min_score})}).then(r=>r.json());document.getElementById('out').textContent=JSON.stringify(data,null,2);document.getElementById('cnt').textContent=data.count;document.getElementById('top').textContent=data.count?data.results[0].score:'0';document.getElementById('dep').textContent=data.count?data.results[0].department:'-';const box=document.getElementById('results');box.innerHTML='';for(const r of data.results){const el=document.createElement('div');el.className='r';el.innerHTML=`<strong>${r.question}</strong><div style="margin-top:6px;color:#d7eaff">${r.answer}</div><div class="dept">${r.department}</div> <span style="font-size:12px;color:#aefce5">score: ${r.score}</span>`;box.appendChild(el);}}
+async function runEmbed(){const query=document.getElementById('q').value;const data=await fetch('/embed',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({query,top_k:1,min_score:0})}).then(r=>r.json());document.getElementById('out').textContent=JSON.stringify(data,null,2)}
+document.getElementById('searchBtn').addEventListener('click',runSearch);document.getElementById('embedBtn').addEventListener('click',runEmbed);runSearch();
+</script></body></html>
